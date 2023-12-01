@@ -1,5 +1,4 @@
 number_dictionary = {'one' : '1','two': '2','three':'3','four':'4','five':'5','six':'6','seven':'7','eight':'8','nine':'9'}
-reversed_number_dictionary = {'eno' : '1','owt': '2','eerht':'3','ruof':'4','evif':'5','xis':'6','neves':'7','thgie':'8','enin':'9'}
 
 def main1():
     input = input_as_list()
@@ -17,36 +16,32 @@ def main2():
     sum = 0
     for line in input:
 
-        # Get the first and last number from the list.
-        first = get_first_number(line)
-        last = get_last_number(line)
+        # Get all the numbers from the list.
+        numbers = get_numbers(line)
 
-        # Finally, the values are concatenated and summed.
-        sum += int(''.join([first,last]))
+        # Add the concatenated first and last numbers to the sum
+        sum += int(''.join([numbers[0],numbers[-1]]))
     return sum
 
 # Retrieves the first number of a given string, which can either be a literal, or fully spelled out number.
 # The dictionary provides the mapping of the numbers written as strings, mapped onto their literal value.
-def get_first_number(string, number_dict=number_dictionary):
+def get_numbers(string):
+    number_list = []
     while(len(string) != 0):
-        # If the string starts with a digit, that digit is returned.
+        # If the string starts with a digit, that digit is added to the number list.
         if(string[0].isdigit()):
-            return string[0]
+            number_list += string[0]
 
-        # If the string starts with a number written out, the corresponding value is returned.
+        # If the string starts with a number written out, the corresponding value is added to the number list.
         else:
-            for key,value in number_dict.items():
+            for key,value in number_dictionary.items():
                 if string.startswith(key):
-                    return value
+                    number_list += value
+                    break
 
         # Repeat by removing the first character until a value is found.
         string = string[1:]
-    return None
-
-# Retrieves the last number from a list, which could be a literal digit or fully spelled out number.
-def get_last_number(line):
-    # get_first_number is called, but both the line and dictionary are reversed, resulting in the last number of the line.
-    return get_first_number(line[::-1], reversed_number_dictionary)
+    return number_list
 
 
 def input_as_list():
