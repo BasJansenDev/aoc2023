@@ -2,7 +2,7 @@ number_dictionary = {'one' : '1','two': '2','three':'3','four':'4','five':'5','s
 reversed_number_dictionary = {'eno' : '1','owt': '2','eerht':'3','ruof':'4','evif':'5','xis':'6','neves':'7','thgie':'8','enin':'9'}
 
 def main1():
-    input = inputAsList()
+    input = input_as_list()
     sum = 0
     for line in input:
         # Get all integers in the string and put them in a list.
@@ -13,13 +13,13 @@ def main1():
     return sum
 
 def main2():
-    input = inputAsList()
+    input = input_as_list()
     sum = 0
     for line in input:
 
         # Get the first and last number from the list.
-        first = getFirstNumber(line)
-        last = getLastNumber(line)
+        first = get_first_number(line)
+        last = get_last_number(line)
 
         # Finally, the values are concatenated and summed.
         sum += int(''.join([first,last]))
@@ -27,7 +27,7 @@ def main2():
 
 # Retrieves the first number of a given string, which can either be a literal, or fully spelled out number.
 # The dictionary provides the mapping of the numbers written as strings, mapped onto their literal value.
-def getFirstNumber(string, number_dict=number_dictionary):
+def get_first_number(string, number_dict=number_dictionary):
     while(len(string) != 0):
         # If the string starts with a digit, that digit is returned.
         if(string[0].isdigit()):
@@ -44,12 +44,12 @@ def getFirstNumber(string, number_dict=number_dictionary):
     return None
 
 # Retrieves the last number from a list, which could be a literal digit or fully spelled out number.
-def getLastNumber(line):
-    # getFirstNumber is called, but both the line and dictionary are reversed, resulting in the last number of the line.
-    return getFirstNumber(line[::-1], reversed_number_dictionary)
+def get_last_number(line):
+    # get_first_number is called, but both the line and dictionary are reversed, resulting in the last number of the line.
+    return get_first_number(line[::-1], reversed_number_dictionary)
 
 
-def inputAsList():
+def input_as_list():
     f = open('input')
     return list(f.read().split('\n'))
 
