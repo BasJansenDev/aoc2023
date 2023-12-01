@@ -5,10 +5,10 @@ def main1():
     sum = 0
     for line in input:
         # Get all integers in the string and put them in a list.
-        integer_list = ''.join(x for x in line if x.isdigit())
+        numbers = ''.join(x for x in line if x.isdigit())
 
         # Add the concatenated value of the first and last integer to the sum.
-        sum += int(integer_list[0] + integer_list[len(integer_list)-1])
+        sum += int(numbers[0] + numbers[-1])
     return sum
 
 def main2():
